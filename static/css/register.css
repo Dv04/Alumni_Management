@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+
+body:not(form .form){
+  /* background: linear-gradient(135deg, #A1CCD1, #F4F2DE, #E9B384, #7C9D96); */
+  /* background: linear-gradient(135deg, #FFEAD2, #AFD3E2, #A4D0A4) no-repeat; */
+  background-image: url(/static/image/bg2.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+    max-width: 600px;
+}
+
+form{
+  /* background: #D4E2D4; */
+  background: #ABC4AA;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* input[type="text"],
+input[type="email"],
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+} */
+
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+.form{
+    margin: 0 auto;
+    border: 3px solid black;
+    width: fit-content;
+    border-radius: 10px;
+    padding: 20px;
+    font-weight: bold;
+
+}
+
+
+.form-content {
+  display: none; /* Hide all form sections by default */
+}
+
+/* Show the form section when the corresponding radio button is checked */
+#form1:checked ~ #form1-content,
+#form2:checked ~ #form2-content,
+#form3:checked ~ #form3-content {
+  display: block;
+}

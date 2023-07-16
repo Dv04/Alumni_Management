@@ -1,0 +1,50 @@
+.footer {
+    padding: 40px 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .footer-logo img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .footer-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-content li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-content a {
+    text-decoration: none;
+  }
+  
+  .footer-social ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  .footer-social li {
+    margin-right: 10px;
+  }
+  
+  .footer-social a {
+    text-decoration: none;
+    font-size: 20px;
+  }
+
+  /* Font Awesome icons - Make sure to include the Font Awesome CSS in your HTML */
+  /* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-5fbWw9eGELdY0m+H9A7a+u1cVhoq3xF5K48egbgwnPWZZX5iz7hOJub0JvA0Wj3IiXe+BHcV9Zp6c+WIoqFbw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> */
+  

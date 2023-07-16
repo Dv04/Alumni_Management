@@ -1,0 +1,40 @@
+<!-- contact.html -->
+<!-- result.html -->
+
+{% extends 'Base.html' %}
+{% block extrafiles %}
+<link rel="stylesheet" href="/static/css/contact.css" />
+{% endblock extrafiles %}
+{% block content %}
+  <h2>Contact</h2>
+  <form action="#" method="post">
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+    <div>
+      <label for="subject">Subject:</label>
+      <input type="text" id="subject" name="subject" required>
+    </div>
+    <div>
+      <label for="from">From:</label>
+      <input type="email" id="from" name="from" required>
+    </div>
+    <div>
+      <label for="to">To:</label>
+      <input type="email" id="to" name="to" value="" readonly required>
+    </div>
+    <div>
+      <input type="submit" class=" mx auto " value="Send">
+    </div>
+  </form>
+
+  <script>
+    // Auto-fill the 'To' field with the email address from the URL parameter
+    var urlParams = new URLSearchParams(window.location.search);
+    var toEmail = urlParams.get('email');
+    if (toEmail) {
+      document.getElementById('to').value = toEmail;
+    }
+  </script>
+  {% endblock content %}

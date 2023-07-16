@@ -1,0 +1,36 @@
+<nav
+  class="navbar navbar-expand-lg navbar-light bg-transparent d-flex justify-content-center border-bottom border-dark mb-4"
+>
+  <a class="navbar-brand ps-3" href="{{ url_for('home_page') }}">NaMeHeRe</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ url_for('home_page') }}">Home</a>
+      </li>
+      {% if not user.is_active: %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('login_page') }}">Login</a>
+      </li>
+      {% endif %} {% if user.is_active: %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('logout_page') }}">Log Out</a>
+      </li>
+      {% endif %}
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ url_for('search_page') }}">Search</a>
+      </li>
+    </ul>
+  </div>
+</nav>

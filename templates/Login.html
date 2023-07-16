@@ -1,0 +1,11 @@
+{% extends 'base.html' %} 
+{% import "bootstrap/wtf.html" as wtf %} 
+{% block extrafiles %}
+<link rel="stylesheet" href="/static/css/login.css" />
+{% endblock extrafiles %} 
+{% block content %}
+<div class="col-lg-8 col-md-10 mb-5 mx-auto ">
+  <h2 >Alumni login </h2>
+  {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+</div>
+{% endblock content %}

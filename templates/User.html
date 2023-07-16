@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% block extrafiles %}
+<link rel="stylesheet" href="/static/css/user.css" />
+{% endblock extrafiles %} {% block content %}
+
+<div class="container">
+  <h2>User Details</h2>
+  <div class="img">
+    <img src="{{ user.email | gravatar }}" alt="image" />
+  </div>
+  <div class="details ">
+    <div class="user-details">
+      <!-- <label for="name">Name:</label> -->
+      <div>
+        <p id="name">Heet Vekariya</p>
+      </div>
+      <br>
+      <div>
+        <p id="role">Head of Department</p>
+        <!-- <span id="name">{{ user.name }}</span> -->
+      </div>
+    </div>
+    <div class="user-details">
+      <label for="email">Email:</label>
+      <span id="email">{{ user.email}}</span>
+    </div>
+    <div class="user-details">
+      <label for="college">College:</label>
+      <span id="college">{{ user.college }}</span>
+    </div>
+    <div class="user-details">
+      <label for="year">Year of Graduation:</label>
+      <span id="year">{{ user.grad_year }}</span>
+    </div>
+    <button id="update-details-btn">Change Password</button>
+    <button class="update-btn"><a class="update" href="forgot-password.html">Update Details</a></button>
+  </div>
+</div>
+
+<script src="path/to/your/js/firebase.js"></script>
+<script src="path/to/your/js/user-page.js"></script>
+
+{% endblock content %}

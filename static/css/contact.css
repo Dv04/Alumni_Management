@@ -1,0 +1,49 @@
+/* CSS for Contact Form */
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  input[type="text"],
+  input[type="email"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  input[type="submit"] {
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  /* Container and Heading Styles */
+  
+  .container {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Responsive Styles */
+  
+  @media (max-width: 600px) {
+    form {
+      max-width: 90%;
+    }
+  }
+  

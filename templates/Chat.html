@@ -1,0 +1,28 @@
+{% extends 'Base.html' %} {% import "bootstrap/wtf.html" as wtf %} {% block
+extrafiles %}
+<link rel="stylesheet" href="/static/css/chat.css" />
+{% endblock extrafiles %} {% block content %}
+<div class="container">
+  <h2>Group Chat</h2>
+  {% for message in prev_chat %}
+  <div class="d-inline-flex">
+    <img
+      src="{{ message | gravatar }}"
+      alt="gravatar"
+      class="d-inline-flex rounded-circle"
+      width="25px"
+      height="25px"
+    />
+    <p class="d-inline-block ms-3">
+    <span class="d-inline-flex date sub-text"> <i>{{ prev_chat.get(message)['name'] }}</i> </span>:&nbsp;&nbsp;{{ prev_chat.get(message)['msg']|safe }} </p>
+  </div>
+  <br />
+  {% endfor %} {{ ckeditor.load(custom_url=url_for('static',
+  filename='ckeditor/ckeditor.js')) }} {{ ckeditor.config(name='body') }} {{
+  wtf.quick_form(chat, novalidate=True, button_map={"submit": "primary"}) }}
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js"></script>
+<script src="/static/js/chat.js"></script>
+{% endblock content %}
