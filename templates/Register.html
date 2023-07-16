@@ -4,8 +4,8 @@ extrafiles %}
 <link rel="stylesheet" href="/static/css/register.css" />
 
 {% endblock extrafiles %} {% block content %}
-<!-- <div class="form-selection container"> -->
-  <label for="form1">Form 1</label>
+<div class="form_select">
+  <label class="mx-auto" for="form1">Form 1</label>
   <input type="radio" name="formType" id="form1"/>
 
   <label for="form2">Form 2</label>
@@ -13,23 +13,24 @@ extrafiles %}
 
   <label for="form3">Form 3</label>
   <input type="radio" name="formType" id="form3" />
-<!-- </div> -->
+  
+  <div id="form1-content" class="col-lg-8 col-md-10 mb-5 mx-auto form-content">
+    <h2>Alumni Registration</h2>
+    {{ wtf.quick_form(reg_form, novalidate=True, button_map={"submit": "primary"})
+    }}
+  </div>
+  <div id="form2-content" class="col-lg-8 col-md-10 mb-5 mx-auto form-content">
+    <h2>Heet Registration</h2>
+    {{ wtf.quick_form(reg_form, novalidate=True, button_map={"submit": "primary"})
+    }}
+  </div>
+  <div id="form3-content" class="col-lg-8 col-md-10 mb-5 mx-auto form-content">
+    <h2>Madhur Registration</h2>
+    {{ wtf.quick_form(reg_form, novalidate=True, button_map={"submit": "primary"})
+    }}
+  </div>
+</div>
 
-<div id="form1-content" class="col-lg-8 col-md-10 mb-5 mx-auto form-content">
-  <h2>Alumni Registration</h2>
-  {{ wtf.quick_form(reg_form, novalidate=True, button_map={"submit": "primary"})
-  }}
-</div>
-<div id="form2-content" class="col-lg-8 col-md-10 mb-5 mx-auto form-content">
-  <h2>Heet Registration</h2>
-  {{ wtf.quick_form(reg_form, novalidate=True, button_map={"submit": "primary"})
-  }}
-</div>
-<div id="form3-content" class="col-lg-8 col-md-10 mb-5 mx-auto form-content">
-  <h2>Madhur Registration</h2>
-  {{ wtf.quick_form(reg_form, novalidate=True, button_map={"submit": "primary"})
-  }}
-</div>
 {% endblock content %} r
 
 <!-- 

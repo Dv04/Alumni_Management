@@ -12,6 +12,7 @@ body:not(form .form){
 
 .container {
     max-width: 600px;
+    /* justify-content: center; */
 }
 
 form{
