@@ -1,0 +1,59 @@
+{% extends 'Base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block extrafiles %}
+
+<link rel="stylesheet" href="/static/css/update.css" />
+
+{% endblock extrafiles %}
+
+{% block content %}
+<div class="container">
+  <h2>Update Details</h2>
+  <div class="user-details">
+    <label for="name">Name:</label>
+    <span id="name">{{ user.name }}</span>
+  </div>
+  <div class="user-details">
+    <label for="email">Email:</label>
+    <span id="email">{{ user.email }}</span>
+  </div>
+  <div class="user-details">
+    <label for="college">College:</label>
+    <span id="college">{{ user.college }}</span>
+  </div>
+  <div class="user-details">
+    <label for="year">Year of Graduation:</label>
+    <span id="year">{{ user.grad_year }}</span>
+  </div>
+  <form class="update-form">
+    <div class="form-group">
+      <label for="startup">Startup Details:</label>
+      <input type="text" class="form-control" id="startup" placeholder="Enter your startup details" />
+    </div>
+    <div class="form-group">
+      <label for="work">Work Details:</label>
+      <input type="text" class="form-control" id="work" placeholder="Enter your work details" />
+    </div>
+    <button type="submit" class="btn btn-primary">Update Startup/Work</button>
+  </form>
+  <div class="password-change">
+    <h3>Change Password</h3>
+    <form class="password-form">
+      <div class="form-group">
+        <label for="current-password">Current Password:</label>
+        <input type="password" class="form-control" id="current-password" placeholder="Enter your current password" />
+      </div>
+      <div class="form-group">
+        <label for="new-password">New Password:</label>
+        <input type="password" class="form-control" id="new-password" placeholder="Enter your new password" />
+      </div>
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" class="form-control" id="confirm-password" placeholder="Confirm your new password" />
+      </div>
+      <button type="submit" class="btn btn-primary">Change Password</button>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}

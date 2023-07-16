@@ -1,0 +1,26 @@
+.container {
+    width: 55%;
+    height: 300px;
+    margin: 10px auto;
+    padding: 20px;
+    text-align: left;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to bottom, #f9f9f9, #e1e1e1);
+    border-radius: 10px;
+    background-image: url(https://media.istockphoto.com/id/1337098223/vector/literature-for-personal-development-concept.jpg?s=612x612&w=0&k=20&c=M6yitNlW59FvJe5gFiuwubWk6F64uu1h6NQ-X3E6U10=);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 400px 300px;
+  }
+  
+  h2 {
+    margin-top: 100px;
+  }
+  
+  .details{
+    margin-top: 30px;
+  }
+  
+  label {
+    font-weight: bold;
+  }

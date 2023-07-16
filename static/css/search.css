@@ -1,0 +1,56 @@
+body:not(form){
+    /* background: linear-gradient(135deg, #A1CCD1, #F4F2DE, #E9B384, #7C9D96); */
+    background-image: url(/static/image/bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+form {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    width: 45%;
+    margin: 20px auto;
+    font-weight: bold;
+    /* padding-bottom: 60px; */
+    margin-bottom: 90px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.form-control {
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+#search{
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  cursor: pointer;
+  transition: background-color 0.3s ease; 
+}
+
+/* Hover effect */
+#search:hover {
+  background-color: #0056b3; /* Darker shade of blue on hover */
+}

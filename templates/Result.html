@@ -1,0 +1,28 @@
+<!-- result.html -->
+
+{% extends 'Base.html' %}
+{% block extrafiles %}
+<link rel="stylesheet" href="/static/css/results.css" />
+{% endblock extrafiles %}
+{% block content %}
+  <div class="container mt-4">
+    <h2>Search Results</h2>
+    <div class="row mt-4">
+      {% for item in result_data %}
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ item.name }}</h5>
+              <p class="card-text">Email: {{ item.email }}</p>
+              <p class="card-text">College: {{ item.college[0] }}</p>
+              <p class="card-text">Year: {{ item.year }}</p>
+              <p class="card-text">Occupation: {{ item.occupation[0] }}</p>
+              <p class="card-text">Further Education: {{ item.Further_Education[0] }}</p>
+              <a href="contact?email={{ item.email }}" target="_blank" class="btn btn-primary">Contact</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock content %}
