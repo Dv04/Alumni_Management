@@ -1,4 +1,6 @@
-{% extends 'Base.html' %} {% block extrafiles %}
+{% extends 'Base.html' %} 
+
+{% block extrafiles %}
 <link rel="stylesheet" href="/static/css/index.css" />
 {% endblock extrafiles %} {% block content %}
 <div class="container mx-auto">
@@ -40,15 +42,15 @@
       aria-label="Slide 3"
     ></button>
   </div>
-  <div class="carousel-inner">
+  <div class="carousel-inner d-block mx-auto container">
     <div class="carousel-item active">
-      <img src="..." class="d-block w-100" alt="..." />
+      <img src="https://via.placeholder.com/300x300" class="d-block" alt="..." />
     </div>
     <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="..." />
+      <img src="https://images.unsplash.com/photo-1689164750404-f9db7b564e60?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80" class="d-block" alt="..." />
     </div>
     <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="..." />
+      <img src="https://via.placeholder.com/200x200" class="d-block" alt="..." />
     </div>
   </div>
   <button
@@ -69,5 +71,6 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
+  
 </div>
 {% endblock content %}
