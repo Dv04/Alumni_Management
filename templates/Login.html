@@ -7,5 +7,7 @@
 <div class="col-lg-8 col-md-10 mb-5 mx-auto ">
   <h2 >Alumni login </h2>
   {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+  <p class="d-flex justify-content-center mt-1">Yet to Register?&nbsp;&nbsp;<a href="{{ url_for('register_page') }}"> Sign Up</a></p>
+
 </div>
 {% endblock content %}

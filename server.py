@@ -1,8 +1,9 @@
+from functools import wraps
 import json
 from firebase import firebase
 from firebase_admin import db
-from forms import RegisterForm, LoginForm, SearchForm, ChatForm
-from flask import Flask, render_template, redirect, url_for
+from forms import RegisterForm, LoginForm, SearchForm, ChatForm, UniForm, DirectorateForm, UpdateForm, PasswordForm
+from flask import abort, Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from flask_wtf import FlaskForm
@@ -26,6 +27,9 @@ logged_in = False
 
 firebase = firebase.FirebaseApplication('https://virthack-a728b-default-rtdb.firebaseio.com/', None)
 
+users = firebase.get('/users', None)
+for key, value in users.items():
+    print(value)
 class User(UserMixin):
     is_active = False
     email = ""
@@ -35,9 +39,35 @@ class User(UserMixin):
     grad_year = ""
     further_ed = ""
     occupation = ""
+    addr=""
+    startup_details=""
+    work_details=""
     priv = "alumni"
 
 log_user = User()
+
+def usr_priv(function):
+    @wraps(function)
+    def decorated_function(*args, **kwargs):
+        if log_user.priv == "alumni" and request.path != "/user":
+            return redirect(url_for('user_page', user=log_user))
+        elif log_user.priv == "university" and request.path != "/university":
+            return redirect(url_for('university_page', user=log_user))
+        elif log_user.priv == "directorate" and request.path != "/directorate":
+            return redirect(url_for('directorate_page', user=log_user))
+        else:
+            return function(*args, **kwargs)
+    return decorated_function
+
+def logged_in(function):
+    @wraps(function)
+    def decorated_function(*args, **kwargs):
+        if log_user.is_active:
+            return function(*args, **kwargs)
+        else:
+            return redirect(url_for('login_page'))
+            
+    return decorated_function
 
 @app.route('/')
 def home_page():
@@ -46,12 +76,73 @@ def home_page():
     return render_template('Index.html', user=log_user)
 
 @app.route('/university')
+@logged_in
+@usr_priv
 def university_page():
     return render_template('University.html', user=log_user)
 
-@app.route('/update')
+@app.route('/change-password', methods=["GET", "POST"])
+@logged_in
+def change_password():
+    pass_form = PasswordForm()
+    if log_user.priv == "university":
+        page = "universities"
+    elif log_user.priv == "directorate":
+        page = "directorate"
+    else:
+        page="users"
+    print("start")
+    if pass_form.validate_on_submit():
+        print("validate")
+        if check_password_hash(pwhash=log_user.password, password=pass_form.old_pass.data):
+            print("match")
+            new_pass = pass_form.new_pass.data
+            if new_pass == pass_form.rep_new_pass.data:
+                print("match2")
+                users = firebase.get(f'/{page}', None)
+                for key, value in users.items():
+                    if value["email"] == log_user.email:
+                        print("updating")
+                        usr_name = log_user.name
+                        usr_email = log_user.email
+                        usr_password = generate_password_hash(
+                            new_pass,
+                            method='pbkdf2:sha256',
+                            salt_length=8
+                        )
+                        usr_college = log_user.college
+                        usr_further_ed = log_user.further_ed
+                        usr_occup = log_user.occupation
+                        usr_grad_year = log_user.grad_year
+                        data = {"college": usr_college,"email": usr_email,"furthereducation": usr_further_ed, "name": usr_name, "occupation":usr_occup, "pass_year": usr_grad_year, "password": usr_password, "priv": log_user.priv}
+                        print("posting")
+                        result = firebase.put(f'/{page}', name=key, data=data)
+                        print("posted")
+                        return redirect(url_for('logout_page'))
+    return render_template('Password.html', user=log_user, form=pass_form)
+
+@app.route('/update', methods=["GET", "POST"])
+@logged_in
 def update_page():
-    return render_template('Update.html', user=log_user)
+    update_form = UpdateForm()
+    pass_form = PasswordForm()
+    print("yes")
+    if update_form.validate_on_submit():
+        startup_details = update_form.startup.data
+        work_details = update_form.work.data
+        data = {"email": log_user.email, "startup": startup_details, "work": work_details}
+        print("yes2")
+        firebase.post(f'/details', data)
+        return redirect(url_for('user_page', user=log_user))
+    return render_template('Update.html', user=log_user, update_form=update_form, pass_form=pass_form)
+
+@app.route('/directorate')
+@logged_in
+@usr_priv
+def directorate_page():
+    with open('clg.json', 'r') as file:
+        clg_data = json.load(file)
+    return render_template('Director.html', user=log_user, usr_clg=clg_data.get(log_user.college))
 
 @app.route('/result/contact', methods=["GET", "POST"])
 def contact_page():
@@ -60,20 +151,23 @@ def contact_page():
 
 # Define the route for the chat page
 @app.route('/chat', methods=["GET", "POST"])
+@logged_in
 def chat():
     chat_form = ChatForm()
+    with open('clg.json', 'r') as file:
+        clg_data = json.load(file)
     if log_user.is_active and chat_form.validate_on_submit():
-        with open('clg.json', 'r') as file:
-            clg_data = json.load(file)
         usr_msg = chat_form.chat_msg.data
         msg = {"group": clg_data.get(log_user.college), "name": log_user.name, "msg": usr_msg}
         firebase.post(f'/chats', msg)
     if not log_user:
         return redirect(url_for('home_page'))
     chat_result = firebase.get('/chats', None)
-    return render_template('Chat.html', user=log_user, chat=chat_form, prev_chat=chat_result)
+    return render_template('Chat.html', user=log_user, chat=chat_form, prev_chat=chat_result, usr_clg=clg_data.get(log_user.college))
 
 @app.route('/user')
+@logged_in
+@usr_priv
 def user_page():
     return render_template('User.html', user=log_user)
 
@@ -130,6 +224,8 @@ def result_page():
 @app.route('/register', methods=['GET', 'POST'])
 def register_page():
     reg_form = RegisterForm()
+    uni_form = UniForm()
+    dir_form = DirectorateForm()
     if reg_form.validate_on_submit():
         usr_name=reg_form.name.data
         college_name = reg_form.college.data
@@ -142,7 +238,7 @@ def register_page():
             method='pbkdf2:sha256',
             salt_length=8
         )
-        data = {"college": college_name,"email": usr_email,"furthereducation": further_ed, "name": usr_name, "occupation":occup, "pass_year": grad_year, "password": hash_and_salted_password, "priv": log_user.priv}
+        data = {"college": college_name,"email": usr_email,"furthereducation": further_ed, "name": usr_name, "occupation":occup, "pass_year": grad_year, "password": hash_and_salted_password, "priv": "alumni"}
         firebase.post(f'/users', data)
         log_user.is_active = True
         log_user.name = usr_name
@@ -153,23 +249,62 @@ def register_page():
         log_user.occupation = occup
         log_user.grad_year = grad_year
         return redirect(url_for('user_page', user=log_user))
-        # usr_id += 1
-        # print(usr_email, hash_and_salted_password)
-    return render_template('Register.html', reg_form=reg_form, user=log_user)
+    elif uni_form.validate_on_submit():
+        uni_name=uni_form.uni_name.data
+        uni_addr=uni_form.uni_addr.data
+        uni_email=uni_form.uni_email.data
+        hash_and_salted_password = generate_password_hash(
+            uni_form.uni_password.data,
+            method='pbkdf2:sha256',
+            salt_length=8
+        )
+        data = {"university": uni_name,"email": uni_email, "password": hash_and_salted_password, "priv": "university"}
+        firebase.post(f'/universities', data)
+        log_user.is_active = True
+        log_user.name = uni_name
+        log_user.email = uni_email
+        log_user.password = hash_and_salted_password
+        log_user.addr = uni_addr
+        log_user.priv = "university"
+        return redirect(url_for('university_page', user=log_user))
+    elif dir_form.validate_on_submit():
+        dir_name=dir_form.dir_name.data
+        dir_college = dir_form.dir_college.data
+        dir_email=dir_form.dir_email.data
+        hash_and_salted_password = generate_password_hash(
+            dir_form.dir_password.data,
+            method='pbkdf2:sha256',
+            salt_length=8
+        )
+        data = {"college": dir_college,"email": dir_email, "name": dir_name, "password": hash_and_salted_password, "priv": "directorate"}
+        firebase.post(f'/directorate', data)
+        log_user.is_active = True
+        log_user.name = dir_name
+        log_user.email = dir_email
+        log_user.password = hash_and_salted_password
+        log_user.college = dir_college
+        log_user.priv = "directorate"
+        return redirect(url_for('directorate_page', user=log_user))
+    return render_template('Register.html', reg_form=reg_form, uni_form=uni_form, dir_form=dir_form, user=log_user)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
     login_form = LoginForm()
     if login_form.validate_on_submit():
         usr_email=login_form.email.data
-        result = firebase.get('/users', None)
+        acc_type = login_form.type.data
+        print("Type "+acc_type)
+        result = firebase.get(f'/{acc_type}', None)
         result_filt = [(result.get(i).get('email'), result.get(i).get('password'), i) for i in result]
         for credentials in result_filt:
             if credentials[0] == usr_email:
                 if check_password_hash(pwhash=credentials[1], password=login_form.password.data):
                     for key, value in result.items():
                         if credentials[0] == value['email']:
-                            result = result[key]
+                            try:
+                                result = result[key]
+                            except:
+                                continue
                     log_user.is_active = True
                     log_user.name = result.get('name')
                     log_user.email = result.get('email')
@@ -178,8 +313,16 @@ def login_page():
                     log_user.further_ed = result.get('furthereducation')
                     log_user.occupation = result.get('occupation')
                     log_user.grad_year = result.get('pass_year')
-                    log_user.priv = result.get('priv')
-                    return redirect(url_for('user_page', user=log_user))
+                    if acc_type == "universities":
+                        log_user.priv = "university"
+                        page = "university"
+                    elif acc_type == "directorate":
+                        log_user.priv = "directorate"
+                        page = "directorate"
+                    else:
+                        log_user.priv = "alumni"
+                        page = "user"
+                    return redirect(url_for(f'{page}_page', user=log_user))
     return render_template('Login.html', form=login_form, user=log_user)
 
 @app.route('/logout')
