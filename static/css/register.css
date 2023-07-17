@@ -18,6 +18,7 @@ body:not(form .form){
 form{
   /* background: #D4E2D4; */
   background: #ABC4AA;
+  width: 50%;
 }
 .form-group {
     margin-bottom: 20px;
@@ -65,7 +66,7 @@ button[type="submit"] {
 .form{
     margin: 0 auto;
     border: 3px solid black;
-    width: fit-content;
+    /* width: fit-content; */
     border-radius: 10px;
     padding: 20px;
     font-weight: bold;
@@ -74,7 +75,7 @@ button[type="submit"] {
 
 
 .form-content {
-  display: none; /* Hide all form sections by default */
+  display: none;
 }
 
 /* Show the form section when the corresponding radio button is checked */
@@ -82,4 +83,19 @@ button[type="submit"] {
 #form2:checked ~ #form2-content,
 #form3:checked ~ #form3-content {
   display: block;
+}
+
+.register_form_select{
+  justify-content: center;
+}
+label:not(.form form){
+  padding-right: 20px;
+}
+
+.input{
+  padding-bottom: 30px;
+
+}
+#form1{
+  margin-left: 680px;
 }

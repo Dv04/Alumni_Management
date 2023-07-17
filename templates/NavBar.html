@@ -21,6 +21,9 @@
       </li>
       {% if not user.is_active: %}
       <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('register_page') }}">Register</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="{{ url_for('login_page') }}">Login</a>
       </li>
       {% endif %} {% if user.is_active: %}
@@ -30,6 +33,9 @@
       {% endif %}
       <li class="nav-item active">
         <a class="nav-link" href="{{ url_for('search_page') }}">Search</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ url_for('chat') }}">Chat</a>
       </li>
     </ul>
   </div>

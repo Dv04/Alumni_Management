@@ -10,23 +10,23 @@
   <div class="details ">
     <div class="user-details">
       <!-- <label for="name">Name:</label> -->
-      <div class="d-flex d-block">
-        <p id="name" class="d-flex d-block">{{ user.name }}&nbsp; - &nbsp;<div class="d-flex d-block display-6 pt-2">{{ user.priv.capitalize() }}</div></p>
+      <div>
+        <p id="name" class="d-inline-flex">{{ user.name }}&nbsp; - &nbsp;<div class="d-inline-flex display-6 pt-2">{{ user.priv.capitalize() }}</div></p>
       </div>
     </div>
     <div class="user-details">
       <label for="email">Email:</label>
-      <span id="email">{{ user.email}}</span>
+      <span id="email">{{ user.email }}<span>
     </div>
     <div class="user-details">
-      <label for="college">College:</label>
-      <span id="college">{{ user.college }}</span>
+      <label for="college">Office:</label>
+      <span id="college">{{ usr_clg}}</span>
     </div>
     <div class="user-details">
-      <label for="year">Year of Graduation:</label>
-      <span id="year">{{ user.grad_year }}</span>
+      <label for="year">Year of Appointment:</label>
+      <span id="year">2022</span>
     </div>
-    <button id="update-details-btn"><a class="update" href="{{ url_for('change_password') }}">Change Password</a></button>
+    <button id="update-details-btn"><a href="{{ url_for('change_password') }}">Change Password</a></button>
     <button class="update-btn"><a class="update" href="{{ url_for('update_page') }}">Update Details</a></button>
   </div>
 </div>

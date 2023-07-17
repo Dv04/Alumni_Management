@@ -1,9 +1,7 @@
-{% extends 'Base.html' %} 
-
-{% block extrafiles %}
+{% extends 'Base.html' %} {% block extrafiles %}
 <link rel="stylesheet" href="/static/css/index.css" />
 {% endblock extrafiles %} {% block content %}
-<div class="container mx-auto">
+<div class="container mx-auto" style="margin-bottom: 250px">
   <h1 class="title">Directorate of Higher Education Alumni Network</h1>
   <div class="content-index">
     <p>
@@ -19,58 +17,259 @@
   </div>
 </div>
 
-<div id="carouselExampleIndicators" class="carousel slide">
-  <div class="carousel-indicators">
-    <button
-      type="button"
-      data-bs-target="#carouselExampleIndicators"
-      data-bs-slide-to="0"
-      class="active"
-      aria-current="true"
-      aria-label="Slide 1"
-    ></button>
-    <button
-      type="button"
-      data-bs-target="#carouselExampleIndicators"
-      data-bs-slide-to="1"
-      aria-label="Slide 2"
-    ></button>
-    <button
-      type="button"
-      data-bs-target="#carouselExampleIndicators"
-      data-bs-slide-to="2"
-      aria-label="Slide 3"
-    ></button>
+<!-- Events -->
+<div class="events">
+  <div style="background-color: #eeeded">
+    <div
+      id="carouselExampleControls"
+      class="carousel carousel-dark"
+      data-bs-ride="carousel"
+    >
+      <h2 class="header-title display-3 header text-center pt-3">Events</h2>
+      <div class="carousel-inner m-5 p-5 mt-3">
+        <div class="carousel-item active">
+          <div class="row h-100 align-items-center">
+            <div class="col-auto p-0">
+              <div class="card border-0 h-100">
+                <div class="card-body h-100 p-0">
+                  <div class="d-flex align-items-start">
+                    <img src="/static/image/adiuni.jpg" alt="rectangle" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5 col-sm-6 col-xl-7 ms-4">
+              <div
+                class="bg-holder z-index--1"
+                style="
+                  background-image: url(assets/img/gallery/quotation.png);
+                  background-position: top center;
+                  background-size: auto;
+                "
+              ></div>
+              <!--/.bg-holder-->
+
+              <h2 class="fw-normal lh-1 mt-0 mt-lg-0">
+                Launch of Adani University and Global Education Forum
+              </h2>
+              <p><small>June 23, 2022</small></p>
+              <p class="mt-5 pe-xxl-8">
+                Global sustainability issues are posing a great threat to the
+                health of people and planet. It becomes imminent for educational
+                fraternities to work towards alleviating the cause of global
+                sustainability issues. Educational initiatives hitherto have not
+                succeeded in addressing the issues. There is an urgent need to
+                rethink, remodel and re-improvise implementation strategies to
+                address sustainability issues.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="row h-100 align-items-center">
+            <div class="col-auto p-0">
+              <div class="card border-0 h-100">
+                <div class="card-body h-100 p-0">
+                  <div class="d-flex align-items-start">
+                    <img
+                      src="/static/image/tree-plantation.jpg"
+                      alt="rectangle"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5 col-lg-6 col-xl-7 ms-4">
+              <div
+                class="bg-holder z-index--1"
+                style="
+                  background-image: url(assets/img/gallery/quotation.png);
+                  background-position: top center;
+                  background-size: auto;
+                "
+              ></div>
+              <!--/.bg-holder-->
+              <h2 class="fw-normal lh-1 mt-0 mt-lg-0">
+                Cleanliness Drive and Tree Plantation
+              </h2>
+              <p><small>June 23, 2022</small></p>
+              <p class="mt-5 pe-xxl-8">
+                Global sustainability issues are posing a great threat to the
+                health of people and planet. It becomes imminent for educational
+                fraternities to work towards alleviating the cause of global
+                sustainability issues. Educational initiatives hitherto have not
+                succeeded in addressing the issues. There is an urgent need to
+                rethink, remodel and re-improvise implementation strategies to
+                address sustainability issues.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="row h-100 align-items-center">
+            <div class="col-auto p-0">
+              <div class="card border-0 h-100">
+                <div class="card-body h-100 p-0">
+                  <div class="d-flex align-items-start">
+                    <img src="/static/image/mari-rail.jpg" alt="rectangle" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5 col-sm-6 col-xl-7 ms-4">
+              <div
+                class="bg-holder z-index--1"
+                style="
+                  background-image: url(assets/img/gallery/quotation.png);
+                  background-position: top center;
+                  background-size: auto;
+                "
+              ></div>
+              <!--/.bg-holder-->
+
+              <h2 class="fw-normal lh-1 mt-0 mt-lg-0">
+                Mari-Rail Multi Model Competition-2021
+              </h2>
+              <p><small>Sep 6, 2021</small></p>
+              <p class="mt-5 pe-xxl-8">
+                The Lawgical Club of Adani Institute of Infrastructure has
+                organized Mari-Rail Multi Model Competition-2021 on 6 September
+                2021. This Competition is organized giving due consideration to
+                the fact that the acceleration of globalization processes and
+                increased international cooperation, freight transport routes
+                are expanding, which requires new solution for the most
+                efficient use of various modes of transport hoisting. This would
+                specifically enhance the interoperability between Rail and
+                maritime transport.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center outline-dark pb-3">
+        <h2 class="lead">
+          <a
+            href="{{ url_for('home_page') }}"
+            class="link-dark rounded-pill text-center p-1"
+            >Read more</a
+          >
+        </h2>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleControls"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleControls"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
   </div>
-  <div class="carousel-inner d-block mx-auto container">
-    <div class="carousel-item active">
-      <img src="https://via.placeholder.com/300x300" class="d-block" alt="..." />
+
+  <div id="carouselExampleIndicators" class="carousel slide mt-5">
+    <div class="carousel-indicators">
+      <button
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide-to="0"
+        class="active"
+        aria-current="true"
+        aria-label="Slide 1"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide-to="1"
+        aria-label="Slide 2"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide-to="2"
+        aria-label="Slide 3"
+      ></button>
     </div>
-    <div class="carousel-item">
-      <img src="https://images.unsplash.com/photo-1689164750404-f9db7b564e60?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80" class="d-block" alt="..." />
+    <div class="carousel-inner d-block mx-auto container">
+      <h2>Universities</h2>
+      <div class="carousel-item active">
+        <a href="https://www.adaniuni.ac.in/" target="_blank">
+          <img src="/static/image/au.png" alt="..." />
+        </a>
+        <p class="info">
+          Adani University is an institute of excellence offering specially
+          designed programs with a curriculum aligned to the needs and
+          aspirations. We offer a wide range of undergraduate, postgraduate, and
+          doctoral programs. Our goal is to provide them with the highest
+          quality education, research, and learning experience. The students are
+          provided with a perfect learning environment for intellectual
+          stimulation and professional growth through interactions with highly
+          acclaimed faculty and distinguished industry captains.
+        </p>
+      </div>
+      <div class="carousel-item">
+        <a href="https://nirmauni.ac.in/" target="_blank">
+          <img src="/static/image/nirma.png" alt="..." style="height: 200px" />
+        </a>
+        <p class="info">
+          Nirma University, Ahmedabad, is a research-oriented, student-centric,
+          multidisciplinary, not-for-profit state private university. The
+          university received NAAC A+ grade in its third cycle of accreditation.
+          It is also awarded the Centre of Excellence (CoE) status by the
+          Government of Gujarat. The constituent institutes, departments and
+          centres facilitate the all-round development of the students. The
+          lush-green campus is well-equipped with state-of-the-art
+          infrastructure to support academic, cultural, sports and other
+          activities.
+        </p>
+      </div>
+      <div class="carousel-item">
+        <a href="https://www.daiict.ac.in/" target="_blank">
+          <img src="/static/image/daiict.png" alt="..." style="height: 200px" />
+        </a>
+        <p class="info">
+          Dhirubhai Ambani Institute of Information and Communication Technology
+          (DA-IICT), is a private Self-financed University/Institute located in
+          Gandhinagar, Gujarat, India. DAIICT has been very active in the area
+          of the CEP. There are 50-plus faculty members with Ph.D. from reputed
+          universities. Many of the faculty members collaborate actively with
+          industries, and some faculty members also have industrial experience.
+          DAIICT is focused on the areas of Information and Communication
+          Technology. Since its inception, several CEPs have been conducted for
+          the Indian Air Force, Indian Navy, SAC-ISRO, INS Valsura. Over the
+          last five years, sponsored programs have been conducted for ICAR and
+          ISRO on topics such as Machine Learning and Deep Learning, Analytics
+          in Agriculture, and so on.
+        </p>
+      </div>
     </div>
-    <div class="carousel-item">
-      <img src="https://via.placeholder.com/200x200" class="d-block" alt="..." />
-    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
-  <button
-    class="carousel-control-prev"
-    type="button"
-    data-bs-target="#carouselExampleIndicators"
-    data-bs-slide="prev"
-  >
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button
-    class="carousel-control-next"
-    type="button"
-    data-bs-target="#carouselExampleIndicators"
-    data-bs-slide="next"
-  >
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-  
 </div>
 {% endblock content %}

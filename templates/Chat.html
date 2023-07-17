@@ -5,6 +5,7 @@ extrafiles %}
 <div class="container">
   <h2>Group Chat</h2>
   {% for message in prev_chat %}
+  {% if prev_chat.get(message)["group"] == usr_clg %}
   <div class="d-inline-flex">
     <img
       src="{{ message | gravatar }}"
@@ -16,6 +17,7 @@ extrafiles %}
     <p class="d-inline-block ms-3">
     <span class="d-inline-flex date sub-text"> <i>{{ prev_chat.get(message)['name'] }}</i> </span>:&nbsp;&nbsp;{{ prev_chat.get(message)['msg']|safe }} </p>
   </div>
+  {% endif %}
   <br />
   {% endfor %} {{ ckeditor.load(custom_url=url_for('static',
   filename='ckeditor/ckeditor.js')) }} {{ ckeditor.config(name='body') }} {{

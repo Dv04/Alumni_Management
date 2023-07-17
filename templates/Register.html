@@ -4,197 +4,34 @@ extrafiles %}
 <link rel="stylesheet" href="/static/css/register.css" />
 
 {% endblock extrafiles %} {% block content %}
-<div class="form_select">
-  <label class="mx-auto" for="form1">Form 1</label>
-  <input type="radio" name="formType" id="form1"/>
+<div class="register_form_select">
+  <input type="radio" name="formType" id="form1" checked />
+  <label class="input" for="form1">Alumni</label>
 
-  <label for="form2">Form 2</label>
   <input type="radio" name="formType" id="form2" />
+  <label class="input" for="form2">University</label>
 
-  <label for="form3">Form 3</label>
   <input type="radio" name="formType" id="form3" />
-  
+  <label class="input" for="form3">Directorate</label>
+
   <div id="form1-content" class="col-lg-8 col-md-10 mb-5 mx-auto form-content">
     <h2>Alumni Registration</h2>
-    {{ wtf.quick_form(reg_form, novalidate=True, button_map={"submit": "primary"})
-    }}
+    {{ wtf.quick_form(reg_form, novalidate=True, button_map={"submit":
+    "primary"}) }}
+    <p class="d-flex justify-content-center mt-1">Already Registered? <a href="{{ url_for('login_page') }}">Sign In</a></p>
   </div>
   <div id="form2-content" class="col-lg-8 col-md-10 mb-5 mx-auto form-content">
-    <h2>Heet Registration</h2>
-    {{ wtf.quick_form(reg_form, novalidate=True, button_map={"submit": "primary"})
-    }}
+    <h2>University Registration</h2>
+    {{ wtf.quick_form(uni_form, novalidate=True, button_map={"submit":
+    "primary"}) }}
+    <p class="d-flex justify-content-center mt-1">Already Registered? <a href="{{ url_for('login_page') }}">Sign In</a></p>
   </div>
   <div id="form3-content" class="col-lg-8 col-md-10 mb-5 mx-auto form-content">
-    <h2>Madhur Registration</h2>
-    {{ wtf.quick_form(reg_form, novalidate=True, button_map={"submit": "primary"})
-    }}
-  </div>
+    <h2>Directorate Registration</h2>
+    {{ wtf.quick_form(dir_form, novalidate=True, button_map={"submit":
+    "primary"}) }}
+    <p class="d-flex justify-content-center mt-1">Already Registered? <a href="{{ url_for('login_page') }}">Sign In</a></p>
+</div>
 </div>
 
-{% endblock content %} r
-
-<!-- 
-
-<div class="container mt-4 form">
-  
-  <form id="registrationForm", methods=>
-      <div class="form-group">
-          <label for="name">Name *</label>
-          <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
-      </div>
-      <div class="form-group">
-          <label for="email">Email address *</label>
-          <input type="email" class="form-control" id="email" placeholder="Enter email" required>
-      </div>
-      <div class="form-group">
-          <label for="college">College *</label>
-          <select class="form-control" id="college" required>
-            <option>Choose your college</option>
-            <option>Adani University</option>
-            <option>Ahmedabad University</option>
-            <option>Birla Institute of Technology and Science, Pilani</option>
-            <option>Gujarat National Law University</option>
-            <option>Indian Institute of Management, Ahmedabad</option>
-            <option>Indian Institute of Technology, Gandhinagar</option>
-            <option>H. L. College of Commerce</option>
-            <option>Patel College of Engineering</option>
-            <option>Sardar Patel Institute of Technology</option>
-            <option>Smt. N. H. Pandya Arts and Commerce College</option>
-            <option>St. Xavier's College, Ahmedabad</option>
-            <option>Adani Institute of Infrastructure Management</option>
-            <option>Dhirubhai Ambani Institute of Information and Communication Technology</option>
-            <option>Gujarat University</option>
-            <option>Narayana Hrudayalaya Medical College and Hospital</option>
-            <option>Parul University</option>
-            <option>Sardar Patel University</option>
-            <option>Shahid Bhagat Singh College</option>
-            <option>Sheth Chimanbhai Patel Institute of Science and Technology</option>
-            <option>Shreemati Nathibai Damodar Thackersey Women's University</option>
-            <option>Usha Pravin Gandhi College of Commerce</option>
-            <option>Xavier University, Ahmedabad</option>
-            <option>Ahmedabad Education Society's Law College</option>
-            <option>Ahmedabad Management Association's Institute of Management</option>
-            <option>B. J. Medical College and Civil Hospital</option>
-            <option>Government Law College, Ahmedabad</option>
-            <option>L. D. College of Engineering</option>
-            <option>Mahatma Gandhi Labour Institute</option>
-          </select>
-      </div>
-      <div class="form-group">
-          <label for="year">Passing Year *</label>
-          <input type="number" class="form-control" id="year" placeholder="Enter your passing year" required>
-      </div>
-
-      <div class="form-group">
-        <label for="education">Further Education</label>
-        <input type="text" class="form-control" id="education" placeholder="Enter your further education details">
-      </div>
-
-      <div class="form-group">
-          <label>Work or Startup *</label>
-          <div class="form-check">
-              <input class="form-check-input" type="radio" name="workOrStartup" id="workOption" value="work" required>
-              <label class="form-check-label" for="workOption">
-                  Work
-              </label>
-          </div>
-          <div class="form-check">
-              <input class="form-check-input" type="radio" name="workOrStartup" id="startupOption" value="startup" required>
-              <label class="form-check-label" for="startupOption">
-                  Startup
-              </label>
-          </div>
-      </div>
-
-      <div class="form-group" id="employmentGroup" style="display: none;">
-          <label for="employment">Employment Information</label>
-          <input type="text" class="form-control" id="employment" placeholder="Enter your employment information">
-      </div>
-
-      <div class="form-group" id="startupGroup" style="display: none;">
-          <label for="startup">Startup Details</label>
-          <input type="text" class="form-control" id="startup" placeholder="Enter your startup details">
-      </div>
-
-      <button type="submit" class="btn btn-primary" id="registerButton">Register</button>
-  </form>
-</div>
-
-<script>
-    // Get the registration form and register button
-    const registrationForm = document.getElementById('registrationForm');
-    const registerButton = document.getElementById('registerButton');
-  
-    // Add event listener to the register button
-    let isRegistered = false;
-    registerButton.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent form submission
-        
-        if (!isRegistered) {
-            // Reset form fields except the name field
-            const formElements = registrationForm.elements;
-            for (let i = 0; i < formElements.length; i++) {
-                const element = formElements[i];
-                if (element.id !== 'name') {
-                    element.value = '';
-                }
-            }
-  
-            // Hide existing fields
-            employmentGroup.style.display = 'none';
-            startupGroup.style.display = 'none';
-  
-            // Create password field
-            const passwordField = document.createElement('div');
-            passwordField.classList.add('form-group');
-            passwordField.innerHTML = `
-                <label for="password">Password *</label>
-                <input type="password" class="form-control" id="password" placeholder="Create a password" required>
-            `;
-  
-            // Insert password field after the Passing Year field
-            const yearField = document.getElementById('year');
-            yearField.parentNode.insertBefore(passwordField, yearField.nextSibling);
-            
-            // Save data to JSON file
-            const data = {};
-            for (let i = 0; i < formElements.length; i++) {
-                const element = formElements[i];
-                data[element.id] = element.value;
-            }
-            fetch('/save-data', {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            
-            isRegistered = true;
-        }
-    });
-  
-    // Get the radio inputs and the field groups
-    const workOption = document.getElementById('workOption');
-    const startupOption = document.getElementById('startupOption');
-    const employmentGroup = document.getElementById('employmentGroup');
-    const startupGroup = document.getElementById('startupGroup');
-  
-    // Add event listeners to the radio inputs
-    workOption.addEventListener('change', function() {
-        if (this.checked) {
-            employmentGroup.style.display = 'block';
-            startupGroup.style.display = 'none';
-        }
-    });
-  
-    startupOption.addEventListener('change', function() {
-        if (this.checked) {
-            employmentGroup.style.display = 'none';
-            startupGroup.style.display = 'block';
-        }
-    });
-    
-    // Move script to bottom of page
-    document.body.appendChild(document.querySelector('script'));
-  </script> -->
+{% endblock content %}
