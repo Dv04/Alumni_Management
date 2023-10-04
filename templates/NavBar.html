@@ -9,28 +9,54 @@
     data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent"
     aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
+    aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
+  <style>
+    .navbar-nav {
+  background-color: #000;
+  justify-content: flex-end
+  display: flex;
+  align-items: right;
+  background-color: #333;
+  padding: 0;
+  list-style: none;
+}
+
+.navbar-nav li {
+  padding: 10px;
+}
+
+.navbar-nav li a {
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.navbar-nav li a:hover {
+  color: #f8b400;
+}
+
+  </style>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="{{ url_for('home_page') }}">Home</a>
       </li>
-      {% if not user.is_active: %}
+     <!--  {% if not user.is_active: %}-->
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('register_page') }}">Register</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('login_page') }}">Login</a>
       </li>
-      {% endif %} {% if user.is_active: %}
+      <!--{% endif %} {% if user.is_active: %}-->
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('logout_page') }}">Log Out</a>
       </li>
-      {% endif %}
+      <!--{% endif %}-->
       <li class="nav-item active">
         <a class="nav-link" href="{{ url_for('search_page') }}">Search</a>
       </li>
