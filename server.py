@@ -14,22 +14,29 @@ from flask import request
 from flask_gravatar import Gravatar
 from flask_ckeditor import CKEditor, CKEditorField
 
+# Create a Flask app instance
 app = Flask(__name__, static_folder='static')
 Bootstrap(app=app)
 app.app_context().push()
 app.secret_key = "secret-tunnel"
 
+# Initialize CKEditor and Gravatar
 ckeditor = CKEditor(app=app)
 gravatar = Gravatar(app, size=100, rating='g', default='retro', force_default=False, force_lower=False, use_ssl=False, base_url=None)
 
+# Define global variables
 global logged_in
 logged_in = False
 
+# Initialize Firebase
 firebase = firebase.FirebaseApplication('https://virthack-a728b-default-rtdb.firebaseio.com/', None)
 
+# Load user data from Firebase
 users = firebase.get('/users', None)
 for key, value in users.items():
     print(value)
+
+# Define a User class that extends UserMixin
 class User(UserMixin):
     is_active = False
     email = ""
@@ -44,8 +51,10 @@ class User(UserMixin):
     work_details=""
     priv = "alumni"
 
+# Initialize a User instance
 log_user = User()
 
+# Define a decorator for checking user privileges
 def usr_priv(function):
     @wraps(function)
     def decorated_function(*args, **kwargs):
@@ -59,6 +68,7 @@ def usr_priv(function):
             return function(*args, **kwargs)
     return decorated_function
 
+# Define a decorator for checking if a user is logged in
 def logged_in(function):
     @wraps(function)
     def decorated_function(*args, **kwargs):
@@ -69,18 +79,21 @@ def logged_in(function):
             
     return decorated_function
 
+# Define the home page route
 @app.route('/')
 def home_page():
     global logged_in
     print(logged_in)
     return render_template('Index.html', user=log_user)
 
+# Define the university page route
 @app.route('/university')
 @logged_in
 @usr_priv
 def university_page():
     return render_template('University.html', user=log_user)
 
+# Define the change password route
 @app.route('/change-password', methods=["GET", "POST"])
 @logged_in
 def change_password():
@@ -121,6 +134,7 @@ def change_password():
                         return redirect(url_for('logout_page'))
     return render_template('Password.html', user=log_user, form=pass_form)
 
+# Define the update page route
 @app.route('/update', methods=["GET", "POST"])
 @logged_in
 def update_page():
@@ -136,6 +150,7 @@ def update_page():
         return redirect(url_for('user_page', user=log_user))
     return render_template('Update.html', user=log_user, update_form=update_form, pass_form=pass_form)
 
+# Define the directorate page route
 @app.route('/directorate')
 @logged_in
 @usr_priv
@@ -144,6 +159,7 @@ def directorate_page():
         clg_data = json.load(file)
     return render_template('Director.html', user=log_user, usr_clg=clg_data.get(log_user.college))
 
+# Define the contact page route
 @app.route('/result/contact', methods=["GET", "POST"])
 def contact_page():
     return render_template('Contact.html', user=log_user)
@@ -165,12 +181,15 @@ def chat():
     chat_result = firebase.get('/chats', None)
     return render_template('Chat.html', user=log_user, chat=chat_form, prev_chat=chat_result, usr_clg=clg_data.get(log_user.college))
 
+
+# Define the user page route
 @app.route('/user')
 @logged_in
 @usr_priv
 def user_page():
     return render_template('User.html', user=log_user)
 
+# Define the search page route
 @app.route('/search', methods=["GET", "POST"])
 def search_page():
     search_form=SearchForm()
@@ -183,7 +202,7 @@ def search_page():
         return redirect(url_for('result_page', college=college_name, grad_year_from=grad_year_from, grad_year_to=grad_year_to, occup=occup, further_ed=further_ed, user=log_user))
     return render_template('Search.html', form=search_form, user=log_user)
 
-
+# Define the result page route
 @app.route('/result/', methods=["GET", "POST"])
 def result_page():
     result_data = []
@@ -221,6 +240,7 @@ def result_page():
     print(result_data)
     return render_template('Result.html', result_data=result_data, user=log_user)
 
+# Define the register page route
 @app.route('/register', methods=['GET', 'POST'])
 def register_page():
     reg_form = RegisterForm()
@@ -287,6 +307,7 @@ def register_page():
         return redirect(url_for('directorate_page', user=log_user))
     return render_template('Register.html', reg_form=reg_form, uni_form=uni_form, dir_form=dir_form, user=log_user)
 
+# Define the login page route
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
     login_form = LoginForm()
@@ -325,6 +346,7 @@ def login_page():
                     return redirect(url_for(f'{page}_page', user=log_user))
     return render_template('Login.html', form=login_form, user=log_user)
 
+# Define the logout page route
 @app.route('/logout')
 def logout_page():
     log_user.is_active = False
