@@ -45,18 +45,18 @@
       <li class="nav-item active">
         <a class="nav-link" href="{{ url_for('home_page') }}">Home</a>
       </li>
-     <!--  {% if not user.is_active: %}-->
+     {% if not user.is_active: %}
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('register_page') }}">Register</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('login_page') }}">Login</a>
       </li>
-      <!--{% endif %} {% if user.is_active: %}-->
+      {% endif %} {% if user.is_active: %}
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('logout_page') }}">Log Out</a>
       </li>
-      <!--{% endif %}-->
+      {% endif %}
       <li class="nav-item active">
         <a class="nav-link" href="{{ url_for('search_page') }}">Search</a>
       </li>
