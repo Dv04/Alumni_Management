@@ -12,7 +12,6 @@ with open('clg.json', 'r') as file:
 # Create a list of college choices for the SelectField
 listclg = [(i, colleges.get(i)) for i in colleges]
 
-# Updated RegisterForm
 class RegisterForm(FlaskForm):
     """Form for user registration."""
     
@@ -25,7 +24,6 @@ class RegisterForm(FlaskForm):
     password = PasswordField("Password", validators=[DataRequired(), Length(min=8, message="Password must be atleast 8 characters long.")])
     submit = SubmitField("Register")
 
-# Updated UniForm
 class UniForm(FlaskForm):
     """Form for university registration."""
     
@@ -35,7 +33,6 @@ class UniForm(FlaskForm):
     uni_password = PasswordField("Password", validators=[DataRequired(), Length(min=8, message="Password must be at least 8 characters long.")])
     submit = SubmitField("Register")
 
-# Updated DirectorateForm
 class DirectorateForm(FlaskForm):
     """Form for directorate registration."""
     
@@ -56,7 +53,6 @@ class LoginForm(FlaskForm):
     type = RadioField('Login As', choices=[('users', 'Alumni'), ('directorate', 'Directorate'), ('universities', 'University')])
     submit = SubmitField("Login")
 
-# Updated UpdateForm
 class UpdateForm(FlaskForm):
     """Form for updating user information."""
     
@@ -64,7 +60,6 @@ class UpdateForm(FlaskForm):
     work = TextAreaField('Work Details', validators=[Length(max=500)])
     submit = SubmitField("Update")
 
-# Updated SearchForm
 class SearchForm(FlaskForm):
     """Form for searching user profiles."""
 
@@ -81,8 +76,6 @@ class ChatForm(FlaskForm):
     chat_msg = CKEditorField("", validators=[DataRequired()])
     submit = SubmitField("Send Message")
 
-
-# Updated PasswordForm
 class PasswordForm(FlaskForm):
     """Form for updating user passwords."""
 
