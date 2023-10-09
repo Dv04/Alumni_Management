@@ -29,8 +29,7 @@ global logged_in
 logged_in = False
 
 # Initialize Firebase
-# firebase = firebase.FirebaseApplication('https://virthack-a728b-default-rtdb.firebaseio.com/', None)
-firebase = firebase.FirebaseApplication('https://hacktoberfest-alumini-default-rtdb.firebaseio.com/', None)
+firebase = firebase.FirebaseApplication('https://virthack-a728b-default-rtdb.firebaseio.com/', None)
 
 # Load user data from Firebase
 users = firebase.get('/users', None)
