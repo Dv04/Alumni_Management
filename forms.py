@@ -18,7 +18,7 @@ class RegisterForm(FlaskForm):
     
     name = StringField("Name", validators=[DataRequired(), Length(min=2, max=50)])
     college = SelectField("College", choices=listclg, validators=[DataRequired()])
-    pass_year = IntegerField("Graduation Year", validators=[DataRequired()], render_kw={"min": int(datetime.datetime.now().year) - 63, "max": int(datetime.datetime.now().year)})
+    pass_year = IntegerField("Graduation Year", validators=[DataRequired(), NumberRange(min=1960, message="Year must be 1960 or later.")], render_kw={"min": int(datetime.datetime.now().year) - 63, "max": int(datetime.datetime.now().year)})
     furthereducation = StringField("Further Education", validators=[DataRequired(), Length(min=2, message="Please enter a valid education.")])
     occupation = SelectField("Occupation", choices=[('work','Work'), ('startup', 'Start Up')], validators=[DataRequired()])
     email = StringField("Email", validators=[DataRequired(), Email(message="Please enter a valid email address.")])
@@ -69,8 +69,8 @@ class SearchForm(FlaskForm):
     """Form for searching user profiles."""
 
     college = SelectField("College", choices=listclg)
-    pass_year_from = IntegerField("Graduation Year From", validators=[DataRequired()], render_kw={"min": int(datetime.datetime.now().year) - 63, "max": int(datetime.datetime.now().year)})
-    pass_year_to = IntegerField("Graduation Year To", validators=[DataRequired()], render_kw={"min": int(datetime.datetime.now().year) - 63, "max": int(datetime.datetime.now().year)})
+    pass_year_from = IntegerField("Graduation Year From", validators=[DataRequired(), NumberRange(min=1960, message="Year must be 1960 or later.")], render_kw={"min": int(datetime.datetime.now().year) - 63, "max": int(datetime.datetime.now().year)})
+    pass_year_to = IntegerField("Graduation Year To", validators=[DataRequired(), NumberRange(min=1960, message="Year must be 1960 or later.")], render_kw={"min": int(datetime.datetime.now().year) - 63, "max": int(datetime.datetime.now().year)})
     occupation = SelectField("Occupation", choices=[('work','Work'), ('startup', 'Start Up')])
     furthereducation = SelectField("Further Education", choices=[('none','None'), ('masters', 'Masters')])
     search = SubmitField("Search")
