@@ -1,28 +1,82 @@
-<!-- result.html -->
+To make the "Contact" button smaller, you can reduce the padding and font size for the button. Here's the updated code with a smaller "Contact" button:
 
+```html
 {% extends 'Base.html' %}
 {% block extrafiles %}
 <link rel="stylesheet" href="/static/css/results.css" />
+<style>
+  /* Custom CSS for this page */
+  body {
+    background-color: #f5f5f5; /* Background color for the entire page */
+  }
+
+  .container {
+    background-color: #fff; /* Background color for the content area */
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h2 {
+    font-size: 24px;
+    color: #333;
+  }
+
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-title {
+    font-size: 18px;
+    color: #333;
+  }
+
+  .card-text {
+    font-size: 14px;
+    color: #666;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 4px 10px; /* Smaller padding for the button */
+    font-size: 12px; /* Smaller font size for the button text */
+    border-radius: 4px;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+</style>
 {% endblock extrafiles %}
 {% block content %}
-  <div class="container mt-4">
-    <h2>Search Results</h2>
-    <div class="row mt-4">
-      {% for item in result_data %}
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">{{ item.name }}</h5>
-              <p class="card-text">Email: {{ item.email }}</p>
-              <p class="card-text">College: {{ item.college[0] }}</p>
-              <p class="card-text">Year: {{ item.year }}</p>
-              <p class="card-text">Occupation: {{ item.occupation[0] }}</p>
-              <p class="card-text">Further Education: {{ item.Further_Education[0] }}</p>
-              <a href="contact?email={{ item.email }}" target="_blank" class="btn btn-primary">Contact</a>
-            </div>
-          </div>
+<div class="container mt-4">
+  <h2>Search Results</h2>
+  <div class="row mt-4">
+    {% for item in result_data %}
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ item.name }}</h5>
+          <p class="card-text">Email: {{ item.email }}</p>
+          <p class="card-text">College: {{ item.college[0] }}</p>
+          <p class="card-text">Year: {{ item.year }}</p>
+          <p class="card-text">Occupation: {{ item.occupation[0] }}</p>
+          <p class="card-text">Further Education: {{ item.Further_Education[0] }}</p>
+          <a href="contact?email={{ item.email }}" target="_blank" class="btn btn-primary">Contact</a>
         </div>
-      {% endfor %}
+      </div>
     </div>
+    {% endfor %}
   </div>
+</div>
 {% endblock content %}
+```
+
+I reduced the padding and font size of the "Contact" button to make it smaller. You can further adjust the values to achieve the desired button size.
